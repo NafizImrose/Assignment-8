@@ -4,8 +4,33 @@ import Link from "next/link";
 import { FiBookOpen, FiMail, FiLock } from "react-icons/fi";
 import { FcGoogle } from "react-icons/fc";
 import { motion } from "framer-motion";
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function LoginPage() {
+  const router = useRouter();
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+
+    const { data, error } = await authClient.signIn.email(
+      {
+        email,
+        password,
+      },
+      {
+        onSuccess: () => {
+          router.push("/");
+          toast.success("Welcome!");
+        },
+        onError: (ctx) => toast.error(ctx.error.message),
+      },
+    );
+  };
+
   return (
     <div className="relative flex min-h-[80vh] items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-emerald-50/50 to-white px-4 py-16">
       <div className="pointer-events-none absolute -left-32 top-20 h-72 w-72 rounded-full bg-emerald-400/15 blur-3xl" />
@@ -29,7 +54,7 @@ export default function LoginPage() {
           </p>
         </div>
 
-        <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
+        <form onSubmit={onSubmit} className="space-y-5">
           <div>
             <label
               htmlFor="email"
@@ -40,7 +65,7 @@ export default function LoginPage() {
             <div className="relative">
               <FiMail className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
               <input
-                id="email"
+                name="email"
                 type="email"
                 placeholder="you@example.com"
                 className="w-full rounded-xl border border-slate-200 bg-white py-3 pl-10 pr-4 text-slate-800 outline-none transition focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100"
@@ -58,9 +83,9 @@ export default function LoginPage() {
             <div className="relative">
               <FiLock className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
               <input
-                id="password"
+                name="password"
                 type="password"
-                placeholder="••••••••"
+                placeholder="Enter your password"
                 className="w-full rounded-xl border border-slate-200 bg-white py-3 pl-10 pr-4 text-slate-800 outline-none transition focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100"
               />
             </div>

@@ -6,6 +6,8 @@ import { FcGoogle } from "react-icons/fc";
 import { motion } from "framer-motion";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -25,8 +27,9 @@ export default function RegisterPage() {
       {
         onSuccess: () => {
           router.push("/login");
+          toast.success("Account created successfully! Please log in.");
         },
-        onError: (ctx) => alert(ctx.error.message),
+        onError: (ctx) => toast.error(ctx.error.message),
       },
     );
   };
