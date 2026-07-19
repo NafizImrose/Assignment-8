@@ -68,24 +68,6 @@ export default function RegisterPage() {
 
           <div>
             <label
-              htmlFor="photo"
-              className="mb-1.5 block text-sm font-semibold text-slate-700"
-            >
-              Photo URL
-            </label>
-            <div className="relative">
-              <FiImage className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
-              <input
-                id="photo"
-                type="url"
-                placeholder="https://example.com/photo.jpg"
-                className="w-full rounded-xl border border-slate-200 bg-white py-3 pl-10 pr-4 text-slate-800 outline-none transition focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100"
-              />
-            </div>
-          </div>
-
-          <div>
-            <label
               htmlFor="reg-password"
               className="mb-1.5 block text-sm font-semibold text-slate-700"
             >
