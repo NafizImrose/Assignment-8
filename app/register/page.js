@@ -5,19 +5,30 @@ import { FiBookOpen, FiMail, FiLock, FiUser, FiImage } from "react-icons/fi";
 import { FcGoogle } from "react-icons/fc";
 import { motion } from "framer-motion";
 import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 export default function RegisterPage() {
+  const router = useRouter();
+
   const onSubmit = async (e) => {
     e.preventDefault();
     const name = e.target.name.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    const { data, error } = await authClient.signUp.email({
-      name,
-      email,
-      password,
-    });
+    const { data, error } = await authClient.signUp.email(
+      {
+        name,
+        email,
+        password,
+      },
+      {
+        onSuccess: () => {
+          router.push("/login");
+        },
+        onError: (ctx) => alert(ctx.error.message),
+      },
+    );
   };
 
   return (
@@ -25,7 +36,6 @@ export default function RegisterPage() {
       className="relative flex min-h-[80vh] items-center justify-center overflow-hidden
      bg-gradient-to-br from-slate-50 via-emerald-50/50 to-white 
      px-4 py-16"
-      onSubmit={onSubmit}
     >
       <div className="pointer-events-none absolute -right-32 top-16 h-72 w-72 rounded-full bg-emerald-400/15 blur-3xl" />
       <div className="pointer-events-none absolute -left-20 bottom-8 h-64 w-64 rounded-full bg-teal-400/15 blur-3xl" />
@@ -48,7 +58,7 @@ export default function RegisterPage() {
           </p>
         </div>
 
-        <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
+        <form onSubmit={onSubmit} className="space-y-4">
           <div>
             <label
               htmlFor="name"
