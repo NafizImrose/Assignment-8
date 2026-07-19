@@ -1,0 +1,110 @@
+[
+  {
+    "id": "1",
+    "title": "The Whispering Forest",
+    "author": "Elena Marlowe",
+    "description": "A haunting tale of two siblings who discover an ancient forest that remembers every secret whispered beneath its canopy. As they uncover the truth about their family, they must choose between silence and courage.",
+    "category": "Story",
+    "available_quantity": 8,
+    "image_url": "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=600&h=900&fit=crop"
+  },
+  {
+    "id": "2",
+    "title": "Modern React Patterns",
+    "author": "James Chen",
+    "description": "A practical guide to building scalable React applications. Learn composition patterns, state management strategies, and performance optimization techniques used by top engineering teams.",
+    "category": "Tech",
+    "available_quantity": 12,
+    "image_url": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=900&fit=crop"
+  },
+  {
+    "id": "3",
+    "title": "Cosmos Unveiled",
+    "author": "Dr. Sarah Okonkwo",
+    "description": "Journey through black holes, dark matter, and the expanding universe. This accessible science masterpiece makes complex astrophysics feel wondrous and within reach.",
+    "category": "Science",
+    "available_quantity": 5,
+    "image_url": "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=600&h=900&fit=crop"
+  },
+  {
+    "id": "4",
+    "title": "Letters from Nowhere",
+    "author": "Amira Hassan",
+    "description": "When a bookstore owner starts receiving mysterious letters with no return address, she finds herself drawn into a decades-old love story that spans continents and generations.",
+    "category": "Story",
+    "available_quantity": 6,
+    "image_url": "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=600&h=900&fit=crop"
+  },
+  {
+    "id": "5",
+    "title": "Clean Architecture in Practice",
+    "author": "Marcus Webb",
+    "description": "Build maintainable software systems from the ground up. This hands-on guide covers domain-driven design, SOLID principles, and real-world case studies from production systems.",
+    "category": "Tech",
+    "available_quantity": 9,
+    "image_url": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=900&fit=crop"
+  },
+  {
+    "id": "6",
+    "title": "The Quantum Realm",
+    "author": "Prof. Hiroshi Tanaka",
+    "description": "Explore the strange world of quantum mechanics — superposition, entanglement, and the measurement problem — explained with clarity for curious minds of all backgrounds.",
+    "category": "Science",
+    "available_quantity": 4,
+    "image_url": "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&h=900&fit=crop"
+  },
+  {
+    "id": "7",
+    "title": "Midnight at the Harbor",
+    "author": "Clara Fontaine",
+    "description": "In a quiet coastal town, a detective returning home confronts a cold case that shattered her family. Atmospheric, gripping, and full of unexpected turns.",
+    "category": "Story",
+    "available_quantity": 7,
+    "image_url": "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=600&h=900&fit=crop"
+  },
+  {
+    "id": "8",
+    "title": "Full-Stack Next.js",
+    "author": "Priya Sharma",
+    "description": "Master the App Router, server components, and modern deployment workflows. Build production-ready applications with Next.js from zero to launch.",
+    "category": "Tech",
+    "available_quantity": 15,
+    "image_url": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&h=900&fit=crop"
+  },
+  {
+    "id": "9",
+    "title": "Biology of Tomorrow",
+    "author": "Dr. Liam Brooks",
+    "description": "CRISPR, synthetic biology, and the ethics of genetic engineering. An essential read for anyone curious about how biology will reshape medicine and society.",
+    "category": "Science",
+    "available_quantity": 3,
+    "image_url": "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=600&h=900&fit=crop"
+  },
+  {
+    "id": "10",
+    "title": "The Last Lighthouse Keeper",
+    "author": "Oliver Grant",
+    "description": "A retired keeper returns to an abandoned lighthouse and discovers journals that rewrite the history of a forgotten island community. A story of solitude, memory, and redemption.",
+    "category": "Story",
+    "available_quantity": 10,
+    "image_url": "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600&h=900&fit=crop"
+  },
+  {
+    "id": "11",
+    "title": "Design Systems Handbook",
+    "author": "Nina Volkov",
+    "description": "Create cohesive product experiences at scale. Learn token architecture, component libraries, accessibility standards, and collaboration between design and engineering.",
+    "category": "Tech",
+    "available_quantity": 11,
+    "image_url": "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=600&h=900&fit=crop"
+  },
+  {
+    "id": "12",
+    "title": "Earth's Hidden Oceans",
+    "author": "Dr. Maya Patel",
+    "description": "Dive into the deep sea, polar waters, and underground aquifers. Discover how oceans regulate climate and why protecting them is humanity's most urgent scientific challenge.",
+    "category": "Science",
+    "available_quantity": 6,
+    "image_url": "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&h=900&fit=crop"
+  }
+]
