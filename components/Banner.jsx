@@ -38,7 +38,7 @@ export default function Banner() {
         modules={[Autoplay, EffectFade, Pagination]}
         effect="fade"
         fadeEffect={{ crossFade: true }}
-        autoplay={{ delay: 5000, disableOnInteraction: false }}
+        autoplay={{ delay: 3000, disableOnInteraction: false }}
         pagination={{ clickable: true }}
         loop
         className="banner-swiper absolute inset-0 h-full w-full"
