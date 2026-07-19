@@ -4,10 +4,29 @@ import Link from "next/link";
 import { FiBookOpen, FiMail, FiLock, FiUser, FiImage } from "react-icons/fi";
 import { FcGoogle } from "react-icons/fc";
 import { motion } from "framer-motion";
+import { authClient } from "@/lib/auth-client";
 
 export default function RegisterPage() {
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const name = e.target.name.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+
+    const { data, error } = await authClient.signUp.email({
+      name,
+      email,
+      password,
+    });
+  };
+
   return (
-    <div className="relative flex min-h-[80vh] items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-emerald-50/50 to-white px-4 py-16">
+    <div
+      className="relative flex min-h-[80vh] items-center justify-center overflow-hidden
+     bg-gradient-to-br from-slate-50 via-emerald-50/50 to-white 
+     px-4 py-16"
+      onSubmit={onSubmit}
+    >
       <div className="pointer-events-none absolute -right-32 top-16 h-72 w-72 rounded-full bg-emerald-400/15 blur-3xl" />
       <div className="pointer-events-none absolute -left-20 bottom-8 h-64 w-64 rounded-full bg-teal-400/15 blur-3xl" />
 
@@ -40,7 +59,7 @@ export default function RegisterPage() {
             <div className="relative">
               <FiUser className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
               <input
-                id="name"
+                name="name"
                 type="text"
                 placeholder="Your full name"
                 className="w-full rounded-xl border border-slate-200 bg-white py-3 pl-10 pr-4 text-slate-800 outline-none transition focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100"
@@ -58,7 +77,7 @@ export default function RegisterPage() {
             <div className="relative">
               <FiMail className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
               <input
-                id="reg-email"
+                name="email"
                 type="email"
                 placeholder="you@example.com"
                 className="w-full rounded-xl border border-slate-200 bg-white py-3 pl-10 pr-4 text-slate-800 outline-none transition focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100"
@@ -76,9 +95,9 @@ export default function RegisterPage() {
             <div className="relative">
               <FiLock className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
               <input
-                id="reg-password"
+                name="password"
                 type="password"
-                placeholder="••••••••"
+                placeholder="Create password"
                 className="w-full rounded-xl border border-slate-200 bg-white py-3 pl-10 pr-4 text-slate-800 outline-none transition focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100"
               />
             </div>
