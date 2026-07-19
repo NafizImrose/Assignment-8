@@ -66,17 +66,31 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <div className="hidden items-center gap-3 md:flex">
-          <Link
-            href="/login"
-            className="rounded-xl px-4 py-2 text-sm font-semibold text-slate-700 transition-all duration-300 hover:bg-slate-100 hover:text-emerald-700"
-          >
-            Login
-          </Link>
-          <Link href="/register" className="btn-brand !px-5 !py-2.5 text-sm">
-            Register
-          </Link>
-        </div>
+        {user ? (
+          <div className="flex items-center gap-4">
+            <h4 className="font-bold">{user.name}</h4>
+
+            <button
+              onClick={handleSignOut}
+              className="rounded-xl bg-red-700 hidden md:flex  px-4 py-2 text-sm font-bold text-white shadow-xl transition-colors hover:bg-red-600"
+            >
+              Sign Out
+            </button>
+          </div>
+        ) : (
+          <div className="hidden items-center gap-3 md:flex">
+            <Link
+              href="/login"
+              className="rounded-xl px-4 py-2 text-sm font-semibold text-slate-700 transition-all duration-300 hover:bg-slate-100 hover:text-emerald-700"
+            >
+              Login
+            </Link>
+
+            <Link href="/register" className="btn-brand !px-5 !py-2.5 text-sm">
+              Register
+            </Link>
+          </div>
+        )}
 
         <button
           type="button"
@@ -90,18 +104,6 @@ export default function Navbar() {
             <HiOutlineMenuAlt3 className="text-2xl" />
           )}
         </button>
-        <div className="signout flex justify-center items-center space-x-4">
-          <div className="font-bold">
-            <h4>{user?.name}</h4>
-          </div>
-          <button
-            onClick={handleSignOut}
-            variant="danger"
-            className="bg-red-700 p-2 transition-colors hover:bg-red-600 hover:text-base-200 rounded-xl shadow-xl text-sm text-white font-bold"
-          >
-            SignOut
-          </button>
-        </div>
       </nav>
 
       <div
@@ -125,22 +127,41 @@ export default function Navbar() {
               </Link>
             </li>
           ))}
-          <li className="mt-2 flex flex-col gap-2 border-t border-slate-100 pt-4">
-            <Link
-              href="/login"
-              onClick={() => setOpen(false)}
-              className="btn-outline-brand w-full text-sm"
-            >
-              Login
-            </Link>
-            <Link
-              href="/register"
-              onClick={() => setOpen(false)}
-              className="btn-brand w-full text-sm"
-            >
-              Register
-            </Link>
-          </li>
+          {user ? (
+            <li className="mt-2 flex flex-col gap-2 border-t border-slate-100 pt-4">
+              <p className="px-4 text-center font-semibold text-slate-700">
+                Welcome, {user.name}
+              </p>
+
+              <button
+                onClick={() => {
+                  handleSignOut();
+                  setOpen(false);
+                }}
+                className="w-full rounded-xl bg-red-700 py-3 text-sm font-bold text-white transition-colors hover:bg-red-600"
+              >
+                Sign Out
+              </button>
+            </li>
+          ) : (
+            <li className="mt-2 flex flex-col gap-2 border-t border-slate-100 pt-4">
+              <Link
+                href="/login"
+                onClick={() => setOpen(false)}
+                className="btn-outline-brand w-full text-sm"
+              >
+                Login
+              </Link>
+
+              <Link
+                href="/register"
+                onClick={() => setOpen(false)}
+                className="btn-brand w-full text-sm"
+              >
+                Register
+              </Link>
+            </li>
+          )}
         </ul>
       </div>
     </header>
