@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { HiOutlineMenuAlt3, HiOutlineX } from "react-icons/hi";
 import { FiBookOpen } from "react-icons/fi";
+import { authClient } from "@/lib/auth-client";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -13,6 +14,19 @@ const navLinks = [
 ];
 
 export default function Navbar() {
+  const {
+    data: session,
+    isPending, //loading state
+    error, //error object
+    refetch, //refetch the session
+  } = authClient.useSession();
+
+  const user = session?.user;
+
+  const handleSignOut = () => {
+    authClient.signOut();
+  };
+
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
@@ -76,6 +90,18 @@ export default function Navbar() {
             <HiOutlineMenuAlt3 className="text-2xl" />
           )}
         </button>
+        <div className="signout flex justify-center items-center space-x-4">
+          <div className="font-bold">
+            <h4>{user?.name}</h4>
+          </div>
+          <button
+            onClick={handleSignOut}
+            variant="danger"
+            className="bg-red-700 p-2 transition-colors hover:bg-red-600 hover:text-base-200 rounded-xl shadow-xl text-sm text-white font-bold"
+          >
+            SignOut
+          </button>
+        </div>
       </nav>
 
       <div
