@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { FiArrowRight, FiBook } from "react-icons/fi";
+import { authClient } from "@/lib/auth-client";
+import { FaArrowRight } from "react-icons/fa";
 
 const categoryStyles = {
   Story: "bg-amber-50 text-amber-700 border-amber-200",
@@ -9,6 +11,7 @@ const categoryStyles = {
 };
 
 export default function BookCard({ book }) {
+  const { data: session, isPending } = authClient.useSession();
   return (
     <article className="card-soft group flex h-full flex-col overflow-hidden border border-slate-100">
       <div className="relative aspect-[3/4] overflow-hidden bg-gradient-to-br from-emerald-200 to-emerald-600">
@@ -41,15 +44,47 @@ export default function BookCard({ book }) {
             <FiBook className="text-emerald-600" />
             {book.available_quantity} available
           </span>
-          {/* this is improtant */}
+          {/* Modal */}
+          <dialog id="login_modal" className="modal">
+            <div className="modal-box bg-gradient-to-br from-emerald-100 to-emerald-300">
+              <h3 className="text-2xl text-emerald-700 font-bold">
+                Login Required
+              </h3>
 
-          <Link
-            href={`/books/${book.id}`}
-            className="inline-flex items-center gap-1.5  rounded-xl bg-emerald-50 px-3.5 py-2 text-sm font-semibold text-emerald-700 transition-all duration-300 hover:bg-emerald-500 hover:text-white"
-          >
-            Details
-            <FiArrowRight />
-          </Link>
+              <p className="py-4">
+                Please log in to see the details of this book.
+              </p>
+
+              <div className="modal-action">
+                <form method="dialog">
+                  <button className="btn">Cancel</button>
+                </form>
+
+                <Link href="/login" className="btn btn-success">
+                  Login
+                </Link>
+              </div>
+            </div>
+          </dialog>
+          {/* this is improtant */}
+          {session ? (
+            <Link
+              href={`/books/${book.id}`}
+              className="inline-flex items-center gap-1.5  rounded-xl bg-emerald-50 px-3.5 py-2 text-sm font-semibold text-emerald-700 transition-all duration-300 hover:bg-emerald-500 hover:text-white"
+            >
+              Details
+              <FiArrowRight />
+            </Link>
+          ) : (
+            <button
+              onClick={() => document.getElementById("login_modal").showModal()}
+              type="button"
+              className="inline-flex items-center gap-1.5  rounded-xl bg-emerald-50 px-3.5 py-2 text-sm font-semibold text-emerald-700 transition-all duration-300 hover:bg-emerald-500 hover:text-white"
+            >
+              Details
+              <FaArrowRight />
+            </button>
+          )}
         </div>
       </div>
     </article>
