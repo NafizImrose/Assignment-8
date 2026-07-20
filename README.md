@@ -1,4 +1,4 @@
-# LibraNest — Online Book Borrowing Platform
+# BOOKNest — Online Book Borrowing Platform
 
 Premium frontend UI for an online book borrowing platform built with Next.js.
 
@@ -23,15 +23,15 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Routes
 
-| Path | Page |
-|------|------|
-| `/` | Home |
-| `/all-books` | Catalog |
-| `/books/[id]` | Book details |
-| `/login` | Login (UI only) |
-| `/register` | Register (UI only) |
-| `/profile` | My Profile |
-| `/profile/update` | Update Profile |
+| Path              | Page               |
+| ----------------- | ------------------ |
+| `/`               | Home               |
+| `/all-books`      | Catalog            |
+| `/books/[id]`     | Book details       |
+| `/login`          | Login (UI only)    |
+| `/register`       | Register (UI only) |
+| `/profile`        | My Profile         |
+| `/profile/update` | Update Profile     |
 
 ## Notes
 

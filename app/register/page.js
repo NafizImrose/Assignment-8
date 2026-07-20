@@ -116,7 +116,10 @@ export default function RegisterPage() {
             </div>
           </div>
 
-          <button type="submit" className="btn-brand mt-2 w-full !py-3.5">
+          <button
+            type="submit"
+            className="btn-brand cursor-pointer mt-2 w-full !py-3.5"
+          >
             Register
           </button>
         </form>

@@ -30,7 +30,11 @@ export default function ProfilePage() {
   const { data: session, isPending } = authClient.useSession();
 
   if (isPending) {
-    return <p>loading...</p>;
+    return (
+      <div className=" text-center mt-35">
+        <span className="loading loading-spinner loading-xl"></span>
+      </div>
+    );
   }
 
   if (!session) {
