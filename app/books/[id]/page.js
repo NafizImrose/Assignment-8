@@ -13,6 +13,7 @@ import {
   FiShoppingBag,
 } from "react-icons/fi";
 import books from "@/data/books.json";
+import { authClient } from "@/lib/auth-client";
 
 const categoryStyles = {
   Story: "bg-amber-50 text-amber-700 border-amber-200",
@@ -21,6 +22,7 @@ const categoryStyles = {
 };
 
 export default function BookDetailsPage() {
+  const { data: session, isPending } = authClient.useSession();
   const params = useParams();
   const book = books.find((b) => b.id === params.id);
 
@@ -96,7 +98,10 @@ export default function BookDetailsPage() {
 
             <p className="mt-4 flex items-center gap-2 text-lg text-slate-600">
               <FiUser className="text-emerald-600" />
-              by <span className="font-semibold text-slate-800">{book.author}</span>
+              by{" "}
+              <span className="font-semibold text-slate-800">
+                {book.author}
+              </span>
             </p>
 
             <p className="mt-6 text-base leading-relaxed text-slate-600 sm:text-lg">
@@ -109,15 +114,50 @@ export default function BookDetailsPage() {
                 {book.available_quantity} available
               </span>
             </div>
+            {/* Modal */}
+            <dialog id="login_modal" className="modal">
+              <div className="modal-box bg-gradient-to-br from-emerald-100 to-emerald-300">
+                <h3 className="text-2xl text-emerald-700 font-bold">
+                  Login Required
+                </h3>
 
-            <button
-              type="button"
-              onClick={handleBorrow}
-              className="btn-brand mt-8 w-full max-w-xs !py-3.5 text-base"
-            >
-              <FiShoppingBag className="text-lg" />
-              Borrow
-            </button>
+                <p className="py-4">Please log in to borrow this book.</p>
+
+                <div className="modal-action">
+                  <form method="dialog">
+                    <button className="btn">Cancel</button>
+                  </form>
+
+                  <Link href="/login" className="btn btn-success">
+                    Login
+                  </Link>
+                </div>
+              </div>
+            </dialog>
+
+            {/* conditinal rendaring */}
+            {session ? (
+              <button
+                type="button"
+                onClick={handleBorrow}
+                className="btn-brand cursor-pointer mt-8 w-full max-w-xs !py-3.5 text-base"
+              >
+                <FiShoppingBag className="text-lg" />
+                Borrow
+              </button>
+            ) : (
+              <button
+                onClick={() =>
+                  document.getElementById("login_modal").showModal()
+                }
+                type="button"
+                // onClick={handleBorrow}
+                className="btn-brand mt-8 w-full cursor-pointer max-w-xs !py-3.5 text-base"
+              >
+                <FiShoppingBag className="text-lg" />
+                Borrow
+              </button>
+            )}
           </motion.div>
         </div>
       </div>

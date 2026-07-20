@@ -6,6 +6,7 @@ import { useState } from "react";
 import { HiOutlineMenuAlt3, HiOutlineX } from "react-icons/hi";
 import { FiBookOpen } from "react-icons/fi";
 import { authClient } from "@/lib/auth-client";
+import { PiSignOutBold } from "react-icons/pi";
 
 import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
@@ -88,9 +89,11 @@ export default function Navbar() {
 
                 <button
                   onClick={handleSignOut}
-                  className="rounded-xl cursor-pointer bg-red-700 hidden md:flex  px-4 py-2 text-sm font-bold text-white shadow-xl transition-colors hover:bg-red-600"
+                  className="rounded-xl cursor-pointer bg-red-400 hidden md:flex  px-4 py-2 text-sm font-bold text-white shadow-xl transition-colors hover:bg-red-600"
                 >
-                  Sign Out
+                  <div className="flex justify-center items-center space-x-2">
+                    <PiSignOutBold /> <h1>Sign Out</h1>
+                  </div>
                 </button>
               </div>
             ) : (
