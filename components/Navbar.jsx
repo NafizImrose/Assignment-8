@@ -7,6 +7,9 @@ import { HiOutlineMenuAlt3, HiOutlineX } from "react-icons/hi";
 import { FiBookOpen } from "react-icons/fi";
 import { authClient } from "@/lib/auth-client";
 
+import { useRouter } from "next/navigation";
+import { ToastContainer, toast } from "react-toastify";
+
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/all-books", label: "All Books" },
@@ -14,17 +17,20 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const {
-    data: session,
-    isPending, //loading state
-    error, //error object
-    refetch, //refetch the session
-  } = authClient.useSession();
+  const router = useRouter();
+  const { data: session } = authClient.useSession();
 
   const user = session?.user;
 
-  const handleSignOut = () => {
-    authClient.signOut();
+  const handleSignOut = async () => {
+    await authClient.signOut({
+      fetchOptions: {
+        onSuccess: () => {
+          router.push("/login");
+          toast.success("Signed Out successfully!");
+        },
+      },
+    });
   };
 
   const pathname = usePathname();
