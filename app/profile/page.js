@@ -90,13 +90,19 @@ export default function ProfilePage() {
             animate={{ opacity: 1, y: 0 }}
             className="relative mx-auto mb-5 h-28 w-28 overflow-hidden rounded-full ring-4 ring-white/40 shadow-xl"
           >
-            <Image
-              src={session.user.image}
-              alt={user.name}
-              fill
-              sizes="112px"
-              className="object-cover"
-            />
+            {session?.user?.image ? (
+              <Image
+                src={session.user.image}
+                alt={user.name}
+                fill
+                sizes="112px"
+                className="object-cover"
+              />
+            ) : (
+              <div className="flex h-full w-full items-center justify-center bg-emerald-100">
+                <FiUser className="text-5xl text-emerald-600" />
+              </div>
+            )}
           </motion.div>
           <h1 className="font-display text-3xl font-semibold text-white sm:text-4xl">
             {session.user.name}

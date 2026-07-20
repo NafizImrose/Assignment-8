@@ -18,26 +18,52 @@ export default function LoginPage() {
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    const { data, error } = await authClient.signIn.email(
-      {
-        email,
-        password,
-      },
-      {
-        onError: (ctx) => {
-          toast.error(ctx.error.message);
+    // const { data, error } = await authClient.signIn.email(
+    //   {
+    //     email,
+    //     password,
+    //   },
+    //   {
+    //     onError: (ctx) => {
+    //       toast.error(ctx.error.message);
+    //       router.push("/login");
+    //     },
+    //   },
+    // );
+
+    // if (data?.user) {
+    //   toast.success(`Welcome, ${data.user.name}!`);
+
+    //   setTimeout(() => {
+    //     router.push("/");
+    //   }, 1500);
+    // } else {
+    //   router.push("/");
+    // }
+
+    try {
+      const { data } = await authClient.signIn.email(
+        {
+          email,
+          password,
         },
-      },
-    );
+        {
+          onError: (ctx) => {
+            toast.error(ctx.error.message);
+          },
+        },
+      );
 
-    if (data?.user) {
-      toast.success(`Welcome, ${data.user.name}!`);
+      if (data?.user) {
+        toast.success(`Welcome, ${data.user.name}!`);
 
-      setTimeout(() => {
-        router.push("/");
-      }, 1500);
-    } else {
-      router.push("/");
+        setTimeout(() => {
+          router.push("/");
+        }, 1500);
+      }
+    } catch (err) {
+      toast.error("Login failed.");
+      router.push("/login");
     }
   };
 
@@ -101,7 +127,10 @@ export default function LoginPage() {
             </div>
           </div>
 
-          <button type="submit" className="btn-brand w-full !py-3.5">
+          <button
+            type="submit"
+            className="btn-brand w-full cursor-pointer !py-3.5"
+          >
             Login
           </button>
         </form>

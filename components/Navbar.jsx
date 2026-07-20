@@ -9,6 +9,7 @@ import { authClient } from "@/lib/auth-client";
 
 import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
+import { FaUser } from "react-icons/fa";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -76,9 +77,14 @@ export default function Navbar() {
           <div>
             {user ? (
               <div className="flex items-center gap-4">
-                <h4 className="font-bold text-sm">
-                  <Link href={"/profile"}>{user.name}</Link>
-                </h4>
+                <div className="flex justify-center items-center space-x-2">
+                  <Link href={"/profile"}>
+                    <FaUser />
+                  </Link>
+                  <h4 className="font-bold text-sm">
+                    <Link href={"/profile"}>{user.name}</Link>
+                  </h4>
+                </div>
 
                 <button
                   onClick={handleSignOut}
