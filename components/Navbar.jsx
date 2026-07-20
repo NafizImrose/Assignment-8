@@ -76,11 +76,13 @@ export default function Navbar() {
           <div>
             {user ? (
               <div className="flex items-center gap-4">
-                <h4 className="font-bold text-sm">{user.name}</h4>
+                <h4 className="font-bold text-sm">
+                  <Link href={"/profile"}>{user.name}</Link>
+                </h4>
 
                 <button
                   onClick={handleSignOut}
-                  className="rounded-xl bg-red-700 hidden md:flex  px-4 py-2 text-sm font-bold text-white shadow-xl transition-colors hover:bg-red-600"
+                  className="rounded-xl cursor-pointer bg-red-700 hidden md:flex  px-4 py-2 text-sm font-bold text-white shadow-xl transition-colors hover:bg-red-600"
                 >
                   Sign Out
                 </button>

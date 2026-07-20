@@ -3,8 +3,26 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { FiArrowLeft, FiImage, FiUser } from "react-icons/fi";
+import { authClient } from "@/lib/auth-client";
+import { ToastContainer, toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 export default function UpdateProfilePage() {
+  const router = useRouter();
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+
+    const name = e.target.name.value;
+    const image = e.target.image.value;
+
+    await authClient.updateUser({
+      name,
+      image,
+    });
+
+    toast.success("Profile updated successfully!");
+  };
+
   return (
     <div className="relative flex min-h-[75vh] items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-emerald-50/40 to-white px-4 py-16">
       <div className="pointer-events-none absolute left-1/4 top-10 h-56 w-56 rounded-full bg-emerald-400/10 blur-3xl" />
@@ -29,7 +47,7 @@ export default function UpdateProfilePage() {
           Refresh your display name and profile photo URL.
         </p>
 
-        <form onSubmit={(e) => e.preventDefault()} className="mt-8 space-y-5">
+        <form onSubmit={handleUpdate} className="mt-8 space-y-5">
           <div>
             <label
               htmlFor="profile-image"
@@ -40,9 +58,9 @@ export default function UpdateProfilePage() {
             <div className="relative">
               <FiImage className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
               <input
-                id="profile-image"
+                name="image"
                 type="url"
-                defaultValue="https://i.pravatar.cc/300?img=12"
+                // defaultValue="https://i.pravatar.cc/300?img=12"
                 placeholder="https://example.com/avatar.jpg"
                 className="w-full rounded-xl border border-slate-200 bg-white py-3 pl-10 pr-4 text-slate-800 outline-none transition focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100"
               />
@@ -59,16 +77,20 @@ export default function UpdateProfilePage() {
             <div className="relative">
               <FiUser className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
               <input
-                id="profile-name"
+                name="name"
                 type="text"
-                defaultValue="Alex Rivera"
+                // defaultValue="Alex Rivera"
                 placeholder="Your name"
                 className="w-full rounded-xl border border-slate-200 bg-white py-3 pl-10 pr-4 text-slate-800 outline-none transition focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100"
               />
             </div>
           </div>
 
-          <button type="submit" className="btn-brand w-full !py-3.5">
+          <button
+            onClick={() => router.push("/profile")}
+            type="submit"
+            className="btn-brand w-full !py-3.5 cursor-pointer"
+          >
             Update
           </button>
         </form>
