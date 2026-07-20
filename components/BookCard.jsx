@@ -11,7 +11,7 @@ const categoryStyles = {
 export default function BookCard({ book }) {
   return (
     <article className="card-soft group flex h-full flex-col overflow-hidden border border-slate-100">
-      <div className="relative aspect-[3/4] overflow-hidden bg-slate-100">
+      <div className="relative aspect-[3/4] overflow-hidden bg-gradient-to-br from-emerald-200 to-emerald-600">
         <Image
           src={book.image_url}
           alt={book.title}

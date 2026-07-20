@@ -61,7 +61,7 @@ export default function Banner() {
         ))}
       </Swiper>
 
-      <div className="pointer-events-none relative z-10 flex min-h-[88vh] items-center">
+      <div className="pointer-events-none bg-gradient-to-br from-emerald-200 to-emerald-600 relative z-10 flex min-h-[88vh] items-center">
         <div className="pointer-events-auto mx-auto w-full max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 28 }}
@@ -69,13 +69,13 @@ export default function Banner() {
             transition={{ duration: 0.7, ease: "easeOut" }}
             className="max-w-2xl"
           >
-            <p className="mb-4 font-display text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
-              Libra<span className="text-emerald-400">Nest</span>
+            <p className="mb-4 font-display text-4xl font-semibold tracking-tight text-black sm:text-5xl lg:text-6xl">
+              BOOK<span className="text-emerald-700">Nest</span>
             </p>
             <h1 className="font-display text-3xl font-medium leading-tight text-white/95 sm:text-4xl lg:text-5xl">
               Find Your Next Read
             </h1>
-            <p className="mt-5 max-w-lg text-base leading-relaxed text-slate-200 sm:text-lg">
+            <p className="mt-5 max-w-lg text-base leading-relaxed text-emereald-700 sm:text-lg">
               Browse curated stories, tech manuals, and science titles — then
               borrow with ease from our premium digital library.
             </p>

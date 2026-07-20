@@ -45,7 +45,7 @@ export default function Navbar() {
             <FiBookOpen className="text-xl" />
           </span>
           <span className="font-display text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">
-            Libra<span className="text-emerald-600">Nest</span>
+            BOOK<span className="text-emerald-600">Nest</span>
           </span>
         </Link>
 
@@ -66,44 +66,51 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {user ? (
-          <div className="flex items-center gap-4">
-            <h4 className="font-bold">{user.name}</h4>
+        <div className="flex justify-center items-center space-x-3">
+          <div>
+            {user ? (
+              <div className="flex items-center gap-4">
+                <h4 className="font-bold text-sm">{user.name}</h4>
 
-            <button
-              onClick={handleSignOut}
-              className="rounded-xl bg-red-700 hidden md:flex  px-4 py-2 text-sm font-bold text-white shadow-xl transition-colors hover:bg-red-600"
-            >
-              Sign Out
-            </button>
+                <button
+                  onClick={handleSignOut}
+                  className="rounded-xl bg-red-700 hidden md:flex  px-4 py-2 text-sm font-bold text-white shadow-xl transition-colors hover:bg-red-600"
+                >
+                  Sign Out
+                </button>
+              </div>
+            ) : (
+              <div className="hidden items-center gap-3 md:flex">
+                <Link
+                  href="/login"
+                  className="rounded-xl px-4 py-2 text-sm font-semibold text-slate-700 transition-all duration-300 hover:bg-slate-100 hover:text-emerald-700"
+                >
+                  Login
+                </Link>
+
+                <Link
+                  href="/register"
+                  className="btn-brand !px-5 !py-2.5 text-sm"
+                >
+                  Register
+                </Link>
+              </div>
+            )}
           </div>
-        ) : (
-          <div className="hidden items-center gap-3 md:flex">
-            <Link
-              href="/login"
-              className="rounded-xl px-4 py-2 text-sm font-semibold text-slate-700 transition-all duration-300 hover:bg-slate-100 hover:text-emerald-700"
-            >
-              Login
-            </Link>
 
-            <Link href="/register" className="btn-brand !px-5 !py-2.5 text-sm">
-              Register
-            </Link>
-          </div>
-        )}
-
-        <button
-          type="button"
-          className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-700 md:hidden"
-          aria-label={open ? "Close menu" : "Open menu"}
-          onClick={() => setOpen((v) => !v)}
-        >
-          {open ? (
-            <HiOutlineX className="text-2xl" />
-          ) : (
-            <HiOutlineMenuAlt3 className="text-2xl" />
-          )}
-        </button>
+          <button
+            type="button"
+            className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-700 md:hidden"
+            aria-label={open ? "Close menu" : "Open menu"}
+            onClick={() => setOpen((v) => !v)}
+          >
+            {open ? (
+              <HiOutlineX className="text-2xl" />
+            ) : (
+              <HiOutlineMenuAlt3 className="text-2xl" />
+            )}
+          </button>
+        </div>
       </nav>
 
       <div

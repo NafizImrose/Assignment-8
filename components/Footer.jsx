@@ -33,7 +33,7 @@ export default function Footer() {
               <FiBookOpen className="text-xl" />
             </span>
             <span className="font-display text-xl font-semibold text-slate-900">
-              Libra<span className="text-emerald-600">Nest</span>
+              BOOK<span className="text-emerald-600">Nest</span>
             </span>
           </Link>
           <p className="mt-3 max-w-xs text-sm leading-relaxed text-slate-600">
