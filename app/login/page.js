@@ -11,8 +11,10 @@ import "react-toastify/dist/ReactToastify.css";
 
 export default function LoginPage() {
   const router = useRouter();
+
   const onSubmit = async (e) => {
     e.preventDefault();
+
     const email = e.target.email.value;
     const password = e.target.password.value;
 
@@ -22,13 +24,21 @@ export default function LoginPage() {
         password,
       },
       {
-        onSuccess: () => {
-          router.push("/");
-          toast.success("Welcome!");
+        onError: (ctx) => {
+          toast.error(ctx.error.message);
         },
-        onError: (ctx) => toast.error(ctx.error.message),
       },
     );
+
+    if (data?.user) {
+      toast.success(`Welcome, ${data.user.name}!`);
+
+      setTimeout(() => {
+        router.push("/");
+      }, 1500);
+    } else {
+      router.push("/");
+    }
   };
 
   return (
