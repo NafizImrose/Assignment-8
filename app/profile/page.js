@@ -48,7 +48,7 @@ export default function ProfilePage() {
 
           {/* Heading */}
           <h1 className="mt-6 text-3xl font-bold text-slate-900">
-            You're not logged in
+            You are not logged in
           </h1>
 
           {/* Description */}
@@ -77,7 +77,7 @@ export default function ProfilePage() {
 
           {/* Extra text */}
           <p className="mt-6 text-sm text-slate-500">
-            Don't have an account? Create one to borrow books, save favorites,
+            Do not have an account? Create one to borrow books, save favorites,
             and manage your reading history.
           </p>
         </div>
