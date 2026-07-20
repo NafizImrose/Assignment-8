@@ -18,29 +18,6 @@ export default function LoginPage() {
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    // const { data, error } = await authClient.signIn.email(
-    //   {
-    //     email,
-    //     password,
-    //   },
-    //   {
-    //     onError: (ctx) => {
-    //       toast.error(ctx.error.message);
-    //       router.push("/login");
-    //     },
-    //   },
-    // );
-
-    // if (data?.user) {
-    //   toast.success(`Welcome, ${data.user.name}!`);
-
-    //   setTimeout(() => {
-    //     router.push("/");
-    //   }, 1500);
-    // } else {
-    //   router.push("/");
-    // }
-
     try {
       const { data } = await authClient.signIn.email(
         {
@@ -65,6 +42,12 @@ export default function LoginPage() {
       toast.error("Login failed.");
       router.push("/login");
     }
+  };
+
+  const handleGoogleSignin = async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+    });
   };
 
   return (
@@ -144,8 +127,9 @@ export default function LoginPage() {
         </div>
 
         <button
+          onClick={handleGoogleSignin}
           type="button"
-          className="flex w-full items-center justify-center gap-3 rounded-xl border border-slate-200 bg-white py-3.5 text-sm font-semibold text-slate-700 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
+          className="flex w-full items-center cursor-pointer justify-center gap-3 rounded-xl border border-slate-200 bg-white py-3.5 text-sm font-semibold text-slate-700 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
         >
           <FcGoogle className="text-xl" />
           Continue with Google

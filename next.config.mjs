@@ -8,7 +8,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "i.pravatar.cc",
+        hostname: "lh3.googleusercontent.com",
       },
     ],
   },

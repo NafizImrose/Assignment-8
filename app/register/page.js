@@ -34,6 +34,11 @@ export default function RegisterPage() {
     );
   };
 
+  const handleGoogleSignup = async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+    });
+  };
   return (
     <div
       className="relative flex min-h-[80vh] items-center justify-center overflow-hidden
@@ -133,8 +138,9 @@ export default function RegisterPage() {
         </div>
 
         <button
+          onClick={handleGoogleSignup}
           type="button"
-          className="flex w-full items-center justify-center gap-3 rounded-xl border border-slate-200 bg-white py-3.5 text-sm font-semibold text-slate-700 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
+          className="flex w-full items-center cursor-pointer justify-center gap-3 rounded-xl border border-slate-200 bg-white py-3.5 text-sm font-semibold text-slate-700 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
         >
           <FcGoogle className="text-xl" />
           Continue with Google
