@@ -25,7 +25,8 @@ export default function RegisterPage() {
         password,
       },
       {
-        onSuccess: () => {
+        onSuccess: async () => {
+          await authClient.signOut();
           router.push("/login");
           toast.success("Account created successfully! Please log in.");
         },
