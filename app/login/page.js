@@ -8,12 +8,16 @@ import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useState } from "react";
 
 export default function LoginPage() {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   const onSubmit = async (e) => {
     e.preventDefault();
+
+    setLoading(true);
 
     const email = e.target.email.value;
     const password = e.target.password.value;
@@ -41,6 +45,8 @@ export default function LoginPage() {
     } catch (err) {
       toast.error("Login failed.");
       router.push("/login");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -112,9 +118,17 @@ export default function LoginPage() {
 
           <button
             type="submit"
-            className="btn-brand w-full cursor-pointer !py-3.5"
+            disabled={loading}
+            className="btn-brand cursor-pointer flex w-full items-center justify-center !py-3.5 disabled:cursor-not-allowed disabled:opacity-70"
           >
-            Login
+            {loading ? (
+              <>
+                <span className="mr-2 h-5 w-5 cursor-pointer animate-spin rounded-full border-2 border-white border-t-transparent"></span>
+                Logging in...
+              </>
+            ) : (
+              "Login"
+            )}
           </button>
         </form>
 

@@ -8,31 +8,44 @@ import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useState } from "react";
 
 export default function RegisterPage() {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   const onSubmit = async (e) => {
     e.preventDefault();
+
+    setLoading(true);
     const name = e.target.name.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    const { data, error } = await authClient.signUp.email(
-      {
-        name,
-        email,
-        password,
-      },
-      {
-        onSuccess: async () => {
-          await authClient.signOut();
-          router.push("/login");
-          toast.success("Account created successfully! Please log in.");
+    try {
+      await authClient.signUp.email(
+        {
+          name,
+          email,
+          password,
         },
-        onError: (ctx) => toast.error(ctx.error.message),
-      },
-    );
+        {
+          onSuccess: async () => {
+            await authClient.signOut();
+
+            toast.success("Account created successfully! Please log in.");
+
+            router.push("/login");
+          },
+
+          onError: (ctx) => {
+            toast.error(ctx.error.message);
+          },
+        },
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleGoogleSignup = async () => {
@@ -124,9 +137,17 @@ export default function RegisterPage() {
 
           <button
             type="submit"
-            className="btn-brand cursor-pointer mt-2 w-full !py-3.5"
+            disabled={loading}
+            className="btn-brand flex w-full cursor-pointer items-center justify-center !py-3.5 disabled:cursor-not-allowed disabled:opacity-70"
           >
-            Register
+            {loading ? (
+              <>
+                <span className="mr-2 h-5 cursor-pointer w-5 animate-spin rounded-full border-2 border-white border-t-transparent"></span>
+                Creating Account...
+              </>
+            ) : (
+              "Register"
+            )}
           </button>
         </form>
 
