@@ -75,7 +75,7 @@ export default function Footer() {
             </li>
             <li className="flex items-center gap-2.5">
               <FiMail className="shrink-0 text-emerald-600" />
-              <span>hello@libranest.com</span>
+              <span>hello@booknest.com</span>
             </li>
           </ul>
         </div>

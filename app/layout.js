@@ -19,7 +19,7 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata = {
-  title: "LibraNest | Online Book Borrowing Platform",
+  title: "BookNest | Online Book Borrowing Platform",
   description:
     "Discover, borrow, and enjoy premium books from our digital library. Story, Tech, and Science collections await.",
 };

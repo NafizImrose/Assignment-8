@@ -79,7 +79,7 @@ export default function BookCard({ book }) {
             <button
               onClick={() => document.getElementById("login_modal").showModal()}
               type="button"
-              className="inline-flex items-center gap-1.5  rounded-xl bg-emerald-50 px-3.5 py-2 text-sm font-semibold text-emerald-700 transition-all duration-300 hover:bg-emerald-500 hover:text-white"
+              className="inline-flex items-center cursor-pointer gap-1.5  rounded-xl bg-emerald-50 px-3.5 py-2 text-sm font-semibold text-emerald-700 transition-all duration-300 hover:bg-emerald-500 hover:text-white"
             >
               Details
               <FaArrowRight />
