@@ -19,23 +19,19 @@ const navLinks = [
 
 export default function Navbar() {
   const router = useRouter();
-  const [signingOut, setSigningOut] = useState(false);
   const { data: session } = authClient.useSession();
 
   const user = session?.user;
 
   const handleSignOut = async () => {
-    try {
-      await authClient.signOut();
-
-      toast.success("Signed out successfully");
-
-      router.push("/login");
-    } catch (error) {
-      toast.error("Failed to sign out");
-    } finally {
-      setSigningOut(false);
-    }
+    await authClient.signOut({
+      fetchOptions: {
+        onSuccess: () => {
+          router.push("/login");
+          toast.success("Signed Out successfully!");
+        },
+      },
+    });
   };
 
   const pathname = usePathname();
@@ -92,17 +88,11 @@ export default function Navbar() {
 
                 <button
                   onClick={handleSignOut}
-                  disabled={signingOut}
-                  className="rounded-xl cursor-pointer bg-red-700 px-4 py-2 text-sm font-bold text-white shadow-xl transition-colors hover:bg-red-600 disabled:cursor-not-allowed disabled:opacity-70"
+                  className="rounded-xl cursor-pointer bg-red-400 hidden md:flex  px-4 py-2 text-sm font-bold text-white shadow-xl transition-colors hover:bg-red-600"
                 >
-                  {signingOut ? (
-                    <span className="flex items-center gap-2">
-                      <span className="h-4 w-4 cursor-pointer animate-spin rounded-full border-2 border-white border-t-transparent"></span>
-                      Signing Out...
-                    </span>
-                  ) : (
-                    "Sign Out"
-                  )}
+                  <div className="flex justify-center items-center space-x-2">
+                    <PiSignOutBold /> <h1>Sign Out</h1>
+                  </div>
                 </button>
               </div>
             ) : (
