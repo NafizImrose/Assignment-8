@@ -100,7 +100,7 @@ export default function Footer() {
       </div>
 
       <div className="relative border-t border-slate-200/80 py-5 text-center text-sm text-slate-500">
-        © {new Date().getFullYear()} LibraNest. All rights reserved.
+        © {new Date().getFullYear()} BookNest. All rights reserved.
       </div>
     </footer>
   );
